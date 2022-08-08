@@ -10,13 +10,10 @@ class Candidate extends Model
     use HasFactory;
 
     protected $fillable =[
-        'first-name',
-        'last_name',
-        'mobile',
-        'national_code',
         'username',
         'password',
-        'approved_by'
+        'approved_by',
+        'emaile',
     ];
 
     protected $hidden = [

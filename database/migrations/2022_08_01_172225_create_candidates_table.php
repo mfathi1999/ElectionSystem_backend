@@ -15,14 +15,11 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('mobile');
-            $table->string('national_code');
             $table->string('username');
             $table->string('password');
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('approved',['YES','NO'])->default('NO');
+            $table->enum('status',['APPROVED','UNAPPROVED'])->default('UNAPPROVED');
             $table->unsignedBigInteger('approved_by')->nullable();
             $table->timestamps();
         });
