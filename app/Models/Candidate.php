@@ -14,7 +14,7 @@ class Candidate extends Authenticatable
         'username',
         'password',
         'approved_by',
-        'emaile',
+        'email',
     ];
 
     protected $hidden = [

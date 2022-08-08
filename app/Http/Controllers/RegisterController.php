@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\CandidateStatus;
+use App\Helpers\CustomResponse;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
@@ -22,20 +23,20 @@ class RegisterController extends Controller
                             ],
         ]);
 
-        //create new candidate
-        // $new_candiate = Candidate::create([
-        //     'username' => $request->username,
-        //     'password' => $request->password,
-        //     'email' => $request->email,
-        //     'status' => CandidateStatus::UNAPPROVED,
-        // ]);
+        // create new candidate
+        $new_candiate = Candidate::create([
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => $request->password,
+            'status' => CandidateStatus::UNAPPROVED,
+        ]);
 
         // send confirmed email
 
 
         //return data and 
 
-        
-        return response('registration successful. please check your email inbox for validation email');
+        return CustomResponse::json($new_candiate,
+                                    'registration successful. please check your email inbox for validation email');
     }
 }
