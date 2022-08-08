@@ -24,4 +24,7 @@ class Candidate extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    public function Identification(){
+        return $this->morphOne(Identification::class,'identificationable');
+    }
 }

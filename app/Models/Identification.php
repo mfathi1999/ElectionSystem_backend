@@ -20,4 +20,7 @@ class Identification extends Model
         'birthday_date' => 'datetime',
     ];
 
+    public function Identificationable(){
+        return $this->morphTo();
+    }
 }
