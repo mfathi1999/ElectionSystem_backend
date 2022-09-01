@@ -12,7 +12,7 @@ class CustomResponse extends Response
 
         $data = [
             "message" => $message,
-            "data" => $data&&isset($data->resource)&&method_exists($data->resource,'total')?$data->resource:$data ,
+            "data" => $data,
         ];
 
         return response()->json($data,$status,$headers);

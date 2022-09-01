@@ -56,6 +56,7 @@ class RegisterController extends Controller
 
         //create token
         $email_verification = VerificationEmail::where('email',$candidate->email);
+
         if($email_verification){
             $email_verification->delete();
         }
@@ -64,14 +65,17 @@ class RegisterController extends Controller
         $email_verification = VerificationEmail::create([
             'email' => $candidate->email,
             'token' => Hash::make( $token ),
-            // 'token' => $token ,
             'expired_at' => now()->addMinutes(3),
         ]);
 
-        // $url = sprintf("localhost/api/candidate/%s/?token=%s",[$candidate->id,$token]);
         Mail::to($candidate)->send(new Registered($candidate,$token));
     }
 
+    public function resendCandidateVerifyEmail(){
+        $candidate = auth()->user();
+        $this->sendEmailCandidate($candidate);
+        return CustomResponse::json(null,'verification code sent to your email');
+    }
     public function verifyCandidateEmail(Request $request){
 
         $request->validate([

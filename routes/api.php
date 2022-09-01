@@ -31,6 +31,6 @@ Route::prefix('candidate')->group(function () {
         Route::post('email-verify',[\App\Http\Controllers\RegisterController::class,'verifyCandidateEmail']);
 
         // email verification
-        Route::get('resend-verification-email',[\App\Http\Controllers\RegisterController::class,'sendEmailCandidate']);
+        Route::get('resend-verification-email',[\App\Http\Controllers\RegisterController::class,'resendCandidateVerifyEmail']);
     });
 });
