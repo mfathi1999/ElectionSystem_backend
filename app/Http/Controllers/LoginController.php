@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CustomResponse;
 use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -27,6 +28,9 @@ class LoginController extends Controller
     }
 
     public function logoutCandidate(){
+        $candidate = auth()->user();
+        $candidate->tokens()->delete();
         
+        return CustomResponse::json('goodbye');
     }
 }
