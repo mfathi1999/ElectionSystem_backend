@@ -12,16 +12,16 @@ class Registered extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-    public $url;
+    public $token;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user,$url)
+    public function __construct($user,$token)
     {
         $this->user =$user;
-        $this->url = $url;
+        $this->token = $token;
     }
 
     /**
@@ -31,6 +31,7 @@ class Registered extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.registered',['user'=>$this->user]);
+        return $this->view('emails.registered',['user'=>$this->user,
+                                                'token' =>$this->token]);
     }
 }

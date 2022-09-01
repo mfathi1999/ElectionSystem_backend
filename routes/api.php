@@ -21,14 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // candidates routes
 Route::prefix('candidate')->group(function () {
-    Route::get('email-verify/{candidate}',[\App\Http\Controllers\RegisterController::class,'emailVerifyCandidate']);
     
     Route::post('login',[\App\Http\Controllers\LoginController::class,'loginCandidate']);
     Route::post('register',[\App\Http\Controllers\RegisterController::class,'registerCandidate']);
     
-    Route::group(['middleware' => ['auth:candidate-api']],function(){
+    Route::group(['middleware' => ['auth:sanctum','type.candidate']],function(){
         
         Route::post('logout',[\App\Http\Controllers\LoginController::class,'logoutCandidate']);
+        Route::post('email-verify',[\App\Http\Controllers\RegisterController::class,'verifyCandidateEmail']);
 
         // email verification
         Route::get('resend-verification-email',[\App\Http\Controllers\RegisterController::class,'sendEmailCandidate']);

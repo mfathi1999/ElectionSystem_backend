@@ -8,7 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Candidate extends Authenticatable
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory,HasApiTokens;
 
     protected $fillable =[
         'username',
@@ -25,7 +25,7 @@ class Candidate extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Identification(){
+    public function identification(){
         return $this->morphOne(Identification::class,'identificationable');
     }
 }

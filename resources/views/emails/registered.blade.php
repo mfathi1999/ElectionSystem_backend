@@ -11,11 +11,9 @@
     <h5>UserName: {{$user['username']}}</h5>
 
     <p>
-        for complete registration please click on the button link below.
-        or copy the link in your web browser.
+        for complete registration please use this code on below.
     </p>
-    <button onclick="{{$url}}">Email Verification</button><br>
-    <a href={{$url}}>{{$url}}</a>
+    <h2>{{$token}}</h2>
 
     <p>
         if this email not related to you, dont need any actions.
