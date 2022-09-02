@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CandidateIdentification extends Model
+class Identification extends Model
 {
     use HasFactory;
 
@@ -14,15 +14,13 @@ class CandidateIdentification extends Model
         'last_name',
         'national_code',
         'mobile',
-        'email',
     ];
 
     protected $cast =[
-        'email_verified_at' => 'datetime',
         'birthday_date' => 'datetime',
     ];
 
-    protected $hidden = [
-        'password',
-    ];
+    public function Identificationable(){
+        return $this->morphTo();
+    }
 }

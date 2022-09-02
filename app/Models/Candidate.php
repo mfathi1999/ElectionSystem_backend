@@ -3,20 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Candidate extends Model
+class Candidate extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,HasApiTokens;
 
     protected $fillable =[
-        'first-name',
-        'last_name',
-        'mobile',
-        'national_code',
         'username',
         'password',
-        'approved_by'
+        'approved_by',
+        'email',
     ];
 
     protected $hidden = [
@@ -27,4 +25,7 @@ class Candidate extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    public function identification(){
+        return $this->morphOne(Identification::class,'identificationable');
+    }
 }

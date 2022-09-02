@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCandidatesTable extends Migration
+class CreateVerificationEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateCandidatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('candidates', function (Blueprint $table) {
+        Schema::create('verification_emails', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
             $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->enum('status',['APPROVED','UNAPPROVED'])->default('UNAPPROVED');
-            $table->unsignedBigInteger('approved_by')->nullable();
+            $table->string('token');
+            $table->timestamp('expired_at')->default(now());
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateCandidatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('candidates');
+        Schema::dropIfExists('verification_emails');
     }
 }
