@@ -30,6 +30,12 @@ class LoginController extends Controller
 
         return $admin->createToken('web',['role:admin'])->plainTextToken;
     }
+    public function logout(){
+        $admin = auth()->user();
+        $admin->tokens()->delete();
+        
+        return CustomResponse::json('goodbye');
+    }
 
     public function forgetPassword(){
 
