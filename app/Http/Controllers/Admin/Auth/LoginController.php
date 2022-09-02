@@ -9,6 +9,7 @@ use App\Models\VerificationEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,7 @@ class LoginController extends Controller
 
         $admin = Admin::where('username',$request->username)->first();
 
-        if(!$admin || ! Hash::check($admin->password , $request->password)){
+        if(! $admin || ! Hash::check($request->password,$admin->password)){
             throw ValidationException::withMessages([
                 'error' => ['The provided credentials are incorrect.'],
             ]);
