@@ -23,6 +23,7 @@ class CreateIdentificationsTable extends Migration
             $table->timestamp('birthday_date')->nullable();
             $table->string('mobile')->nullable();
             $table->enum('status',['EDIT','CHECK','ACCEPT','REJECT'])->default('CHECK');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

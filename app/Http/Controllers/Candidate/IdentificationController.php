@@ -40,6 +40,7 @@ class IdentificationController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'national_code' => $request->national_code,
+            // TODO convert birthday_date from jalali to datetime.
             'birthday_date' => $request->birthday_date,
             'mobile' => $request->mobile,
             'status' => IdentificationStatus::CHECK,
