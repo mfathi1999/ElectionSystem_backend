@@ -32,5 +32,9 @@ Route::prefix('candidate')->group(function () {
 
         // email verification
         Route::get('resend-verification-email',[\App\Http\Controllers\RegisterController::class,'resendCandidateVerifyEmail']);
+
+        // upload identification
+        Route::get('identification',[\App\Http\Controllers\Candidate\IdentificationController::class,'show'])->name('candidate.identification.show');
+        Route::post('identification',[\App\Http\Controllers\Candidate\IdentificationController::class,'store'])->name('candidate.identification.store');
     });
 });

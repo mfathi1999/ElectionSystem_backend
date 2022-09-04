@@ -14,6 +14,8 @@ class Identification extends Model
         'last_name',
         'national_code',
         'mobile',
+        'birthday_date',
+        'status',
     ];
 
     protected $cast =[
