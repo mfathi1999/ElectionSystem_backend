@@ -35,6 +35,12 @@ Route::prefix('candidate')->group(function () {
 
         // upload identification
         Route::get('identification',[\App\Http\Controllers\Candidate\IdentificationController::class,'show'])->name('candidate.identification.show');
+        // TODO add updating(editing) identifications
         Route::post('identification',[\App\Http\Controllers\Candidate\IdentificationController::class,'store'])->name('candidate.identification.store');
+
+        // upload documents
+        Route::get('documents',[App\Http\Controllers\Candidate\DocumentController::class,'index'])->name('candidate.document.index');
+        Route::get('document/{id}',[App\Http\Controllers\Candidate\DocumentController::class,'show'])->name('candidate.document.show');
+        Route::post('document',[App\Http\Controllers\Candidate\DocumentController::class,'store0'])->name('candidate.document.store');
     });
 });

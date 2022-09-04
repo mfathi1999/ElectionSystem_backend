@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('candidate_id');
             $table->string('title');
             $table->text('description');
             $table->enum('status',['CHECK','ACCEPT','REJECT'])->default('CHECK');

@@ -28,4 +28,8 @@ class Candidate extends Authenticatable
     public function identification(){
         return $this->morphOne(Identification::class,'identificationable');
     }
+
+    public function documents(){
+        return $this->hasMany(Document::class);
+    }
 }

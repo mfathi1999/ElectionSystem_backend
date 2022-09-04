@@ -19,4 +19,8 @@ class Document extends Model
     public function files(){
         return $this->morphMany(File::class,'fileable');
     }
+
+    public function candidate(){
+        return $this->belongsTo(Candidate::class);
+    }
 }
