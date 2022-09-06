@@ -26,9 +26,13 @@ class DocumentController extends Controller
     }
 
     public function show($id){
-        $documnet = Document::find($id);
+        $document = Document::find($id);
+        
+        if(! $document){
+            return CustomResponse::json($document,null,404);
+        }
 
-        return CustomResponse::json($documnet);
+        return CustomResponse::json($document);
     }
 
     public function accept(Document $document){

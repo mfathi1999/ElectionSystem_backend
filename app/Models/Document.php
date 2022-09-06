@@ -11,6 +11,7 @@ class Document extends Model
 
     protected $fillable=[
         'title',
+        'candidate_id', 
         'description',
         'status'
     ];

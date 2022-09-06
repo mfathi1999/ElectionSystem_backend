@@ -36,8 +36,8 @@ Route::middleware(['auth:sanctum','type.admin'])->group(function(){
     Route::get('documents/{candidate}',[App\Http\Controllers\Admin\DocumentController::class,'indexByCandidate'])->name('admin.document.index.candidate');
     Route::get('document/{id}',[App\Http\Controllers\Admin\DocumentController::class,'show'])->name('admin.document.show');
 
-    Route::put('document/{document}',[App\Http\Controllers\Admin\DocumentController::class,'accept'])->name('admin.document.accept');
-    Route::put('document/{document}',[App\Http\Controllers\Admin\DocumentController::class,'reject'])->name('admin.document.reject');
+    Route::put('document/accept/{document}',[App\Http\Controllers\Admin\DocumentController::class,'accept'])->name('admin.document.accept');
+    Route::put('document/reject/{document}',[App\Http\Controllers\Admin\DocumentController::class,'reject'])->name('admin.document.reject');
     
     
 });

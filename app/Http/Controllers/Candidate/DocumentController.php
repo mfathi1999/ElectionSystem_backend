@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Candidate;
 use App\Enums\DocumentStatus;
 use App\Helpers\CustomResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
@@ -13,7 +14,7 @@ class DocumentController extends Controller
     public function index(){
         $candidate = auth()->user();
 
-        $documents = $candidate->documents();
+        $documents = $candidate->documents()->get();
 
         return CustomResponse::json($documents);
     }
@@ -38,11 +39,14 @@ class DocumentController extends Controller
 
         $candidate = auth()->user();
 
-        $document  = $candidate->documents->create([
+        // store new document
+        $document = Document::create([
             'title' => $request->title,
+            'candidate_id' => $candidate->id,
             'description' => $request->description,
             'status' => DocumentStatus::CHECK,
         ]);
+        
 
         return CustomResponse::json($document,'documents stored successfuly');
 

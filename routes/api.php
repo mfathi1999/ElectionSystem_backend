@@ -41,6 +41,9 @@ Route::prefix('candidate')->group(function () {
         // upload documents
         Route::get('documents',[App\Http\Controllers\Candidate\DocumentController::class,'index'])->name('candidate.document.index');
         Route::get('document/{id}',[App\Http\Controllers\Candidate\DocumentController::class,'show'])->name('candidate.document.show');
-        Route::post('document',[App\Http\Controllers\Candidate\DocumentController::class,'store0'])->name('candidate.document.store');
+        Route::post('document',[App\Http\Controllers\Candidate\DocumentController::class,'store'])->name('candidate.document.store');
+
+        // uplodad files for documents
+        //TODO develope file storing functions
     });
 });
