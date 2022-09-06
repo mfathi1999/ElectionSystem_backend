@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CandidateStatus;
 use App\Enums\IdentificationStatus;
 use App\Helpers\CustomResponse;
 use App\Http\Controllers\Controller;
@@ -12,15 +13,27 @@ use Illuminate\Http\Request;
 class IdentificationController extends Controller
 {
     public function index(){
-
+        $identifications = Identification::all();
+        return CustomResponse::json($identifications);
     }
 
     public function show($id){
+        $identification = Identification::find($id);
+        if(! $identification){
+            return CustomResponse::json($identification,null,404);
+        }
 
+        return CustomResponse::json($identification);
     }
 
     public function showByCandidate(Candidate $candidate){
+        $identification = $candidate->identification()->first();
+        
+        if(! $identification){
+            return CustomResponse::json($identification,null,404);
+        }
 
+        return CustomResponse::json($identification);
     }
 
     public function acceptIdentification(Identification $identification , Request $request){
@@ -37,6 +50,13 @@ class IdentificationController extends Controller
         // save admin description
         $identification->description = $request->description;
         $identification->save();
+
+        // approve candidate
+        $candidate = $identification->Identificationable;
+        $candidate->status = CandidateStatus::APPROVED;
+        $candidate->approved_by = $admin->id;
+        $candidate->save();
+    
 
         return CustomResponse::json($identification,'user identification accepted');
     }
