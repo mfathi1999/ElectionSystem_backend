@@ -30,4 +30,14 @@ Route::middleware(['auth:sanctum','type.admin'])->group(function(){
     Route::post('identification/accept/{identification}',[\App\Http\Controllers\Admin\IdentificationController::class,'acceptIdentification'])->name('admin.identification.accept');
     Route::post('identification/reject/{identification}',[\App\Http\Controllers\Admin\IdentificationController::class,'rejectIdentification'])->name('admin.identification.accept');
     Route::post('identification/edit/{identification}',[\App\Http\Controllers\Admin\IdentificationController::class,'backToEditIdentification'])->name('admin.identification.accept');
+
+    // documents routs
+    Route::get('documents',[App\Http\Controllers\Admin\DocumentController::class,'index'])->name('admin.document.index');
+    Route::get('documents/{candidate}',[App\Http\Controllers\Admin\DocumentController::class,'indexByCandidate'])->name('admin.document.index.candidate');
+    Route::get('document/{id}',[App\Http\Controllers\Admin\DocumentController::class,'show'])->name('admin.document.show');
+
+    Route::put('document/accept/{document}',[App\Http\Controllers\Admin\DocumentController::class,'accept'])->name('admin.document.accept');
+    Route::put('document/reject/{document}',[App\Http\Controllers\Admin\DocumentController::class,'reject'])->name('admin.document.reject');
+    
+    
 });
