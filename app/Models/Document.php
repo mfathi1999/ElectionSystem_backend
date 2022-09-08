@@ -13,7 +13,9 @@ class Document extends Model
         'title',
         'candidate_id', 
         'description',
-        'status'
+        'status',
+        'changed_status_at',
+        'changed_status_by',
     ];
 
 

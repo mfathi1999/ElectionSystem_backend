@@ -19,6 +19,8 @@ class CreateDocumentsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('status',['CHECK','ACCEPT','REJECT'])->default('CHECK');
+            $table->timestamp('changed_status_at')->nullable();
+            $table->unsignedBigInteger('changed_status_by')->nullable();
             $table->timestamps();
         });
     }
