@@ -36,16 +36,24 @@ class DocumentController extends Controller
     }
 
     public function accept(Document $document){
+        $admin = auth()->user();
+
         $document->update([
             'status' => DocumentStatus::ACCEPT,
+            'changed_status_at' => now(),
+            'changed_status_by' => $admin->id,
         ]);
 
         return CustomResponse::json($document,'accept successfuly');
     }
 
     public function reject(Document $document){
+        $admin = auth()->user();
+
         $document->update([
             'status' => DocumentStatus::REJECT,
+            'changed_status_at' => now(),
+            'changed_status_by' => $admin->id,
         ]);
         return CustomResponse::json($document,'document rejected');
     }
