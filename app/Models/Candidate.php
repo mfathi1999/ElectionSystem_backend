@@ -32,4 +32,8 @@ class Candidate extends Authenticatable
     public function documents(){
         return $this->hasMany(Document::class);
     }
+
+    public function elections(){
+        return $this->belongsToMany(Election::class,'election_candidates');
+    }
 }
