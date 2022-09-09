@@ -40,4 +40,10 @@ Route::middleware(['auth:sanctum','type.admin'])->group(function(){
     Route::put('document/reject/{document}',[App\Http\Controllers\Admin\DocumentController::class,'reject'])->name('admin.document.reject');
     
     
+    // Election routes
+    Route::get('elections',[App\Http\Controllers\Admin\ElectionController::class,'index'])->name('admin.election.index');
+    Route::get('election/{id}',[App\Http\Controllers\Admin\ElectionController::class,'show'])->name('admin.election.show');
+    Route::post('election',[App\Http\Controllers\Admin\ElectionController::class,'store'])->name('admin.election.store');
+    Route::put('election/add-candidate/{election}/{candidate}',[\App\Http\Controllers\Admin\ElectionController::class,'addCandidate'])->name('admin.election.add.candidate');
+    Route::put('election/remove-candidate/{election}/{candidate}',[\App\Http\Controllers\Admin\ElectionController::class,'removeCandidate'])->name('admin.election.remove.candidate');
 });

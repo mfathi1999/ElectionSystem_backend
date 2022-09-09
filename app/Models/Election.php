@@ -9,6 +9,12 @@ class Election extends Model
 {
     use HasFactory;
     
+    protected $fillable= [
+        'title',
+        'description',
+        'started_at',
+        'finished_at',
+    ];
 
     public function files(){
         return $this->morphMany(File::class,'fileable');
