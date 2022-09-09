@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CandidateStatus;
 use App\Helpers\CustomResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
@@ -54,6 +55,10 @@ class ElectionController extends Controller
     }
 
     public function addCandidate(Election $election,Candidate $candidate){
+        if($candidate->status != CandidateStatus::APPROVED){
+            return CustomResponse::json(null,'can not add un_approved cndidate',405);
+        }
+        
         $election->candidates()->attach($candidate);
 
         return CustomResponse::json(null,'candidate added to elecction');

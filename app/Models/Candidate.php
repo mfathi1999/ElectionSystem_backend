@@ -34,6 +34,6 @@ class Candidate extends Authenticatable
     }
 
     public function elections(){
-        return $this->belongsToMany(Election::class,'election_candidate');
+        return $this->belongsToMany(Election::class,'election_candidates');
     }
 }
