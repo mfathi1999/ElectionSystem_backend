@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Election extends Model
 {
     use HasFactory;
+    
+
+    public function files(){
+        return $this->morphMany(File::class,'fileable');
+    }
+    
 }
