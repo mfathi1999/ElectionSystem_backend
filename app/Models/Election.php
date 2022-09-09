@@ -14,4 +14,7 @@ class Election extends Model
         return $this->morphMany(File::class,'fileable');
     }
     
+    public function candidates(){
+        return $this->belongsToMany(Candidate::class,'election_candidate');
+    }
 }
