@@ -47,3 +47,27 @@ Route::prefix('candidate')->group(function () {
         //TODO develope file storing functions
     });
 });
+
+Route::prefix('voter')->group(function(){
+    // login routes
+    Route::post('login',[App\Http\Controllers\Voter\Auth\LoginController::class,'login'])->name('voter.login');
+    Rote::post('register',[App\Http\Controllers\Voter\Auth\RegisterController::class,'register'])->name('voter.register');
+    
+    Route::group(['middleware' => ['auth:sanctum','type.voter']], function(){
+        
+        Route::post('logout',[App\Http\Controllers\Voter\Auth\LoginController::class,'logout'])->name('voter.logout');
+        Route::post('email-verify',[App\Http\Controllers\Voter\Auth\RegisterController::class,'verifyEmail'])->name('voter.verify.email');
+
+        Route::get('resend-verification-email',[App\Http\Controllers\Voter\Auth\RegisterController::class,'resendVerifiedEmail'])->name('voter.resend.verify.email');
+
+        Route::get('identification',[App\Http\Controllers\Voter\IdentificationController::class,'show'])->name('voter.identification.show');
+        Route::post('identification',[App\Http\Controllers\Voter\IdentificationController::class,'store'])->name('voter.identification.store');
+
+        // Voting routes
+        Route::get('votes',[App\Http\Controllers\Voter\VoteController::class,'index'])->name('voter.vote.index');
+        Route::get('vote/{id}',[App\Http\Controllers\Voter\VoteController::class,'show'])->name('voter.vote.show');
+        Route::get('election/{election}/vote',[App\Http\Controllers\Voter\VoteController::class,'showByElection'])->name('voter.vote.showByElection');
+        Route::post('election/{election}/vote',[App\Http\Controllers\Voter\VoteController::class,'store'])->name('voter.vote');
+        
+    });
+});
