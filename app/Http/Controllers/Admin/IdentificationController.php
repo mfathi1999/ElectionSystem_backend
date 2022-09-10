@@ -8,6 +8,7 @@ use App\Helpers\CustomResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Candidate;
 use App\Models\Identification;
+use App\Models\Voter;
 use Illuminate\Http\Request;
 
 class IdentificationController extends Controller
@@ -29,6 +30,16 @@ class IdentificationController extends Controller
     public function showByCandidate(Candidate $candidate){
         $identification = $candidate->identification()->first();
         
+        if(! $identification){
+            return CustomResponse::json($identification,null,404);
+        }
+
+        return CustomResponse::json($identification);
+    }
+
+    public function showByVoter(Voter $voter){
+        $identification = $voter->identification()->first();
+
         if(! $identification){
             return CustomResponse::json($identification,null,404);
         }
