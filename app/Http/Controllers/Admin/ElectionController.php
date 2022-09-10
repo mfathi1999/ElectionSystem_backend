@@ -70,4 +70,8 @@ class ElectionController extends Controller
 
         return CustomResponse::json(null,'candidate removed from election');
     }
+
+    public function resault(Election $election){
+        
+    }
 }

@@ -49,6 +49,9 @@ Route::middleware(['auth:sanctum','type.admin'])->group(function(){
     Route::put('election/add-candidate/{election}/candidate/{candidate}',[\App\Http\Controllers\Admin\ElectionController::class,'addCandidate'])->name('admin.election.add.candidate');
     Route::put('election/remove-candidate/{election}/candidate/{candidate}',[\App\Http\Controllers\Admin\ElectionController::class,'removeCandidate'])->name('admin.election.remove.candidate');
 
+    // election resault
+    Route::get('election/{election}/resault',[App\Http\Controllers\Admin\ElectionController::class,'resault'])->name('admin.election.resault');
+
     // Candidate routes
     Route::get('candidates',[\App\Http\Controllers\Admin\CandidateController::class,'index'])->name('admin.candidate.index');
     Route::get('candidate/{id}',[App\Http\Controllers\Admin\CandidateController::class,'show'])->name('admin.candidate.show');
