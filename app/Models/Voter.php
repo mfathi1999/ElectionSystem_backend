@@ -19,4 +19,8 @@ class Voter extends User
     public function identification(){
         return $this->morphOne(Identification::class,'identificationable');
     }
+
+    public function votes(){
+        return $this->hasMany(Vote::class);
+    }
 }
